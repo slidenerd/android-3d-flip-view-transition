@@ -1,3 +1,4 @@
+package flipviewtransition;
 /**
  * Copyright (c) 2012 Ephraim Tekle genzeb@gmail.com
  * 
@@ -19,10 +20,13 @@
  *  @author Ephraim A. Tekle
  *
  */
-package com.tekle.oss.android.flipviewtransition;
+
 
 import com.tekle.oss.android.animation.AnimationFactory;
 import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
+import com.tekle.oss.android.flipviewtransition.R;
+import com.tekle.oss.android.flipviewtransition.R.id;
+import com.tekle.oss.android.flipviewtransition.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
