@@ -22,17 +22,16 @@ package flipviewtransition;
  */
 
 
-import com.tekle.oss.android.animation.AnimationFactory;
-import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
-import com.tekle.oss.android.flipviewtransition.R;
-import com.tekle.oss.android.flipviewtransition.R.id;
-import com.tekle.oss.android.flipviewtransition.R.layout;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ViewFlipper;
+import android.widget.Toast;
+import android.widget.ViewAnimator;
+
+import com.tekle.oss.android.animation.AnimationFactory;
+import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
+import com.tekle.oss.android.flipviewtransition.R;
 
 public class Flip3DViewTransitionActivity extends Activity {
     /** Called when the activity is first created. */
@@ -41,18 +40,43 @@ public class Flip3DViewTransitionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        final ViewFlipper viewFlipper = (ViewFlipper)this.findViewById(R.id.viewFlipper);
+        final ViewAnimator viewAnimator = (ViewAnimator)this.findViewById(R.id.viewFlipper);
         
         /**
          * Bind a click listener to initiate the flip transitions
          */
-        viewFlipper.setOnClickListener(new OnClickListener() { 
+        viewAnimator.setOnClickListener(new OnClickListener() { 
 			@Override
 			public void onClick(View v) { 
 				// This is all you need to do to 3D flip
-				AnimationFactory.flipTransition(viewFlipper, FlipDirection.LEFT_RIGHT);
+				AnimationFactory.flipTransition(viewAnimator, FlipDirection.LEFT_RIGHT);
 			}
         	
         });
+        
+        // The following click listeners are not needed (only here to test that clicks
+        // are routed to the correct subview of the view animator).
+        
+        this.findViewById(R.id.imageView1).setOnClickListener(new OnClickListener() { 
+			@Override
+			public void onClick(View v) { 
+				// This is all you need to do to 3D flip
+				AnimationFactory.flipTransition(viewAnimator, FlipDirection.LEFT_RIGHT);
+				Toast.makeText(Flip3DViewTransitionActivity.this, "Side A Touched", Toast.LENGTH_SHORT).show(); 
+			}
+        	
+        });
+        
+        this.findViewById(R.id.imageView2).setOnClickListener(new OnClickListener() { 
+			@Override
+			public void onClick(View v) { 
+				// This is all you need to do to 3D flip
+				AnimationFactory.flipTransition(viewAnimator, FlipDirection.LEFT_RIGHT);
+				Toast.makeText(Flip3DViewTransitionActivity.this, "Side B Touched", Toast.LENGTH_SHORT).show(); 
+			}
+        	
+        });
+        
+        
     }
 }
